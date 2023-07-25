@@ -1,4 +1,4 @@
-package com.conversor;
+package com.conversor.logica;
 
 import java.lang.String;
 

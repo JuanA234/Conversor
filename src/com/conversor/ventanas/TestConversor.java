@@ -1,6 +1,6 @@
-package com.conversor.interfaz;
+package com.conversor.ventanas;
 
-import com.conversor.ConversorMoneda;
+import com.conversor.logica.ConversorMoneda;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import javax.swing.JOptionPane;
