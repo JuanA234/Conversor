@@ -23,6 +23,7 @@ public class EntradaValor extends javax.swing.JFrame {
     public EntradaValor(MenuPrincipal menuPrincipal) {
         this.menuPrincipal = menuPrincipal;
         initComponents();
+
     }
 
     private EntradaValor() {
@@ -133,6 +134,13 @@ public class EntradaValor extends javax.swing.JFrame {
 
             //Convertir el texto a un valor numerico
             valorNumerico = Double.parseDouble(textoIngresado);
+
+            // Crear el nuevo panel de opciones de moneda después de guardar el valor
+            OpcionesMoneda opcioneMoneda = new OpcionesMoneda();
+
+            // Cambiar el contenido del panel en la ventana secundaria
+            this.setContentPane(opcioneMoneda);
+            this.revalidate(); // Asegurar que el nuevo contenido se muestre
 
         } catch (NumberFormatException e) {
             // Manejar la excepción si el usuario ingresó un valor no numérico
