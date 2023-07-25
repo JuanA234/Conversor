@@ -4,6 +4,8 @@
  */
 package com.conversor.ventanas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author JuanAndres
@@ -134,7 +136,8 @@ public class EntradaValor extends javax.swing.JFrame {
 
         } catch (NumberFormatException e) {
             // Manejar la excepción si el usuario ingresó un valor no numérico
-            System.err.println("Error: El valor ingresado no es numérico.");
+            JOptionPane.showMessageDialog(null, "valor no valido");
+            System.out.println(e.getMessage());
         }
     }
 
