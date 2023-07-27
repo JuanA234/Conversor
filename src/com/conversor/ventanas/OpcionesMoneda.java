@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
@@ -13,12 +13,17 @@ public class OpcionesMoneda extends javax.swing.JPanel {
     /**
      * Creates new form OpcionesMoneda
      */
-    
+        
+    private final EntradaValor entradaValor;
   
     
-    public OpcionesMoneda() {
+    public OpcionesMoneda(EntradaValor entradaValor) {
+        this.entradaValor = entradaValor;
         initComponents();
     }
+
+
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,9 +107,10 @@ public class OpcionesMoneda extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-      
+        entradaValor.mostrarPanelAnterior();
     }//GEN-LAST:event_btnCancelarActionPerformed
- // Método para establecer el escuchador del botón "Volver al Inicial"
+ 
+   
   
     
 

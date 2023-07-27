@@ -114,6 +114,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         EntradaValor entradaValor = new EntradaValor(this); //Pasa el menu principal como parametro
         entradaValor.setVisible(true);
     }
+    
+    public void abrirMenuPrincipal(EntradaValor entradaValor){
+        this.setVisible(true);
+        entradaValor.setVisible(false);
+        
+    }
     /**
      * @param args the command line arguments
      */

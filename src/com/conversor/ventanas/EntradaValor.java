@@ -5,24 +5,22 @@
 package com.conversor.ventanas;
 
 import javax.swing.JOptionPane;
-
 /**
  *
  * @author JuanAndres
  */
 public class EntradaValor extends javax.swing.JFrame {
 
-    private MenuPrincipal menuPrincipal;
-    private double valorNumerico;
-
+    
+ 
     /**
      * Creates new form NewJFrame
      *
      * @param menuPrincipal
      */
     public EntradaValor(MenuPrincipal menuPrincipal) {
-        this.menuPrincipal = menuPrincipal;
         initComponents();
+       
 
     }
 
@@ -120,26 +118,30 @@ public class EntradaValor extends javax.swing.JFrame {
     }//GEN-LAST:event_tfValorEntradaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        System.exit(0);
+        MenuPrincipal menuPrincipal = new MenuPrincipal();
+        menuPrincipal.abrirMenuPrincipal(this);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
         guardarValorNumerico();
     }//GEN-LAST:event_btnOkActionPerformed
 
+  
+    
+   
     private void guardarValorNumerico() {
         try {
             //Obtener el texto ingresado en la caja de texto
             String textoIngresado = tfValorEntrada.getText();
 
             //Convertir el texto a un valor numerico
-            valorNumerico = Double.parseDouble(textoIngresado);
+            Double.parseDouble(textoIngresado);
 
             // Crear el nuevo panel de opciones de moneda después de guardar el valor
-            OpcionesMoneda opcioneMoneda = new OpcionesMoneda();
+            OpcionesMoneda opcionesMoneda = new OpcionesMoneda(this);
 
             // Cambiar el contenido del panel en la ventana secundaria
-            this.setContentPane(opcioneMoneda);
+            this.setContentPane(opcionesMoneda);
             this.revalidate(); // Asegurar que el nuevo contenido se muestre
 
         } catch (NumberFormatException e) {
@@ -148,7 +150,16 @@ public class EntradaValor extends javax.swing.JFrame {
             System.out.println(e.getMessage());
         }
     }
-
+    
+   
+    public void mostrarPanelAnterior(){
+        this.setContentPane(this.jPanel1);
+        this.revalidate();
+    }
+    
+   
+    
+ 
     /**
      * //Evento para cerrar la ventana secundaria private void
      * formWindowClosing(java.awt.event.WindowEvent evt) { //Mostrar el
