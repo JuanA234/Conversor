@@ -12,9 +12,21 @@ public class ConversorMoneda {
     private double valorConvertido;
     private double[] tasasDeCambio = {1 / 4178.970, 1 / 4598.338, 1 / 5402.816, 1 / 29, 698, 1 / 4, 646, 4154.06, 4402.63, 5405.800, 29, 698, 4, 646};
 
-    private String[] opcionesMonedas = {"De Pesos a Dólar", "De pesos a Euro", "De pesos a libras", "De pesos a Yen",
+    private final String[] opcionesMonedas = {"De Pesos a Dólar", "De pesos a Euro", "De pesos a libras", "De pesos a Yen",
         "De pesos a Won coreano", "De Dólar a pesos", "De Euro a Pesos", "De Libras a Pesos", "De Yen a Pesos",
         "De Won coreano a Pesos"};
+
+    public String[] getOpcionesMonedas() {
+        return opcionesMonedas;
+    }
+
+    public double getValorConvertido() {
+        return valorConvertido;
+    }
+
+    public void setValorConvertido(double valorConvertido) {
+        this.valorConvertido = valorConvertido;
+    }
 
     public double[] getTasasDeCambio() {
         return tasasDeCambio;

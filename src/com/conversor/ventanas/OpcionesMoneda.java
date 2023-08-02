@@ -4,6 +4,10 @@
  */
 package com.conversor.ventanas;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.conversor.logica.ConversorMoneda;
+
 /**
  *
  * @author JuanAndres
@@ -15,11 +19,13 @@ public class OpcionesMoneda extends javax.swing.JPanel {
      */
         
     private final EntradaValor entradaValor;
-  
+    private Map<String, Runnable> acciones;
+    private double valorConvertido;
     
     public OpcionesMoneda(EntradaValor entradaValor) {
         this.entradaValor = entradaValor;
         initComponents();
+        initAcciones();
     }
 
 
@@ -89,8 +95,8 @@ public class OpcionesMoneda extends javax.swing.JPanel {
                     .addComponent(opcionesMonedas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOk)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnOk))
                 .addContainerGap(95, Short.MAX_VALUE))
         );
 
@@ -106,6 +112,14 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void initAcciones(){
+        acciones = new HashMap<>();
+        //Asociar combinaciones con sus acciones
+        //acciones.put("Pesos|Dolar",()-> valorConvertido = );
+        
+   
+    }
+    
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         entradaValor.mostrarPanelAnterior();
     }//GEN-LAST:event_btnCancelarActionPerformed

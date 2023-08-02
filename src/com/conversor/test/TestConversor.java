@@ -1,4 +1,6 @@
-package com.conversor.ventanas;
+package com.conversor.test;
+
+
 
 import com.conversor.logica.ConversorMoneda;
 import java.text.DecimalFormat;
