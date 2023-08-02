@@ -18,7 +18,7 @@ public class TestConversor {
         String[] conversionesPosibles = {"Conversor de monedas", "Conversor de temperatura"};
         ConversorMoneda cm = new ConversorMoneda();
 
-        String valorSeleccionado = JOptionPane.showInputDialog(null,
+        JOptionPane.showInputDialog(null,
                 "Seleccione una opción de conversión", "Menu",
                 JOptionPane.PLAIN_MESSAGE, null,
                 conversionesPosibles, conversionesPosibles[0]).toString();

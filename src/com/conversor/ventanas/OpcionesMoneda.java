@@ -7,6 +7,8 @@ package com.conversor.ventanas;
 import java.util.HashMap;
 import java.util.Map;
 import com.conversor.logica.ConversorMoneda;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import javax.swing.JOptionPane;
 
 /**
@@ -76,6 +78,14 @@ public class OpcionesMoneda extends javax.swing.JPanel {
             }
         });
 
+        valorConversion.setEditable(false);
+        valorConversion.setText(String.valueOf(entradaValor.getValorConvertido()));
+        valorConversion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valorConversionActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("El valor de tu conversión es: ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -142,10 +152,28 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private String conversion(double entradaValor, double tasaDeCambio){
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+        separadoresPersonalizados.setDecimalSeparator('.');
+         DecimalFormat formato = new DecimalFormat("#.###", separadoresPersonalizados);
+         return formato.format(entradaValor*tasaDeCambio);
+         
+         
+    }
+    
     private void initAcciones() {
         acciones = new HashMap<>();
         //Asociar combinaciones con sus acciones
-        acciones.put("Pesos|Dolar", () -> valorConversion.setText(String.valueOf(entradaValor.getValorConvertido() * conversorMoneda.getTasasDeCambio()[0])));
+        acciones.put("Pesos|Dolar", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[0])));
+        acciones.put("Pesos|Euro", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[1])));
+        acciones.put("Pesos|Libras", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[2])));
+        acciones.put("Pesos|Yen", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[3])));
+        acciones.put("Pesos|Won Coreano", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[4])));
+        acciones.put("Dolar|Pesos", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[5])));
+        acciones.put("Euro|Pesos", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[6])));
+        acciones.put("Libras|Pesos", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[7])));
+        acciones.put("Yen|Pesos", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[8])));
+        acciones.put("Won Coreano|Pesos", () -> valorConversion.setText(conversion(entradaValor.getValorConvertido(), conversorMoneda.getTasasDeCambio()[9])));
 
     }
 
@@ -178,11 +206,15 @@ public class OpcionesMoneda extends javax.swing.JPanel {
 
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
         int opcion = JOptionPane.showConfirmDialog(null,
-                "¿Desea continuar?", "Select an Option", JOptionPane.YES_NO_OPTION);
-        if (opcion == 1 || opcion == 2) {
+                "¿Desea Finalizar?", "Select an Option", JOptionPane.YES_NO_OPTION);
+        if (opcion == 0) {
             System.exit(0);
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
+
+    private void valorConversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorConversionActionPerformed
+
+    }//GEN-LAST:event_valorConversionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
