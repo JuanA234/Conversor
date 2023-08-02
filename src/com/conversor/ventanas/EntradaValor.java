@@ -4,6 +4,7 @@
  */
 package com.conversor.ventanas;
 
+import com.conversor.logica.ConversorMoneda;
 import javax.swing.JOptionPane;
 /**
  *
@@ -11,8 +12,14 @@ import javax.swing.JOptionPane;
  */
 public class EntradaValor extends javax.swing.JFrame {
 
-    
  
+    private double valorConvertido;
+    private ConversorMoneda conversorMoneda;
+
+    public double getValorConvertido() {
+        return valorConvertido;
+    }
+    
     /**
      * Creates new form NewJFrame
      *
@@ -20,8 +27,6 @@ public class EntradaValor extends javax.swing.JFrame {
      */
     public EntradaValor(MenuPrincipal menuPrincipal) {
         initComponents();
-       
-
     }
 
     private EntradaValor() {
@@ -129,13 +134,13 @@ public class EntradaValor extends javax.swing.JFrame {
   
     
    
-    private void guardarValorNumerico() {
+    public void guardarValorNumerico() {
         try {
             //Obtener el texto ingresado en la caja de texto
             String textoIngresado = tfValorEntrada.getText();
 
             //Convertir el texto a un valor numerico
-            Double.parseDouble(textoIngresado);
+            valorConvertido = Double.parseDouble(textoIngresado);
 
             // Crear el nuevo panel de opciones de moneda después de guardar el valor
             OpcionesMoneda opcionesMoneda = new OpcionesMoneda(this);

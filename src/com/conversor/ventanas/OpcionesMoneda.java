@@ -1,4 +1,4 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
@@ -7,6 +7,7 @@ package com.conversor.ventanas;
 import java.util.HashMap;
 import java.util.Map;
 import com.conversor.logica.ConversorMoneda;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,19 +18,15 @@ public class OpcionesMoneda extends javax.swing.JPanel {
     /**
      * Creates new form OpcionesMoneda
      */
-        
     private final EntradaValor entradaValor;
+    private ConversorMoneda conversorMoneda = new ConversorMoneda();
     private Map<String, Runnable> acciones;
-    private double valorConvertido;
-    
+
     public OpcionesMoneda(EntradaValor entradaValor) {
         this.entradaValor = entradaValor;
         initComponents();
         initAcciones();
     }
-
-
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,45 +41,74 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         opcionesMonedas = new javax.swing.JComboBox<>();
         opcionesMonedas2 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        btnOk = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
+        btnFinalizar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
+        valorConversion = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
         opcionesMonedas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesos", "Dolar", "Euro", "Libras", "Yen", "Won Coreano" }));
+        opcionesMonedas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionesMonedasActionPerformed(evt);
+            }
+        });
 
         opcionesMonedas2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesos", "Dolar", "Euro", "Libras", "Yen", "Won Coreano" }));
+        opcionesMonedas2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opcionesMonedas2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Elija la moneda a la que deseas convertir tu dinero: ");
 
-        btnOk.setText("Ok");
-
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btnFinalizar.setText("Finalizar");
+        btnFinalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                btnFinalizarActionPerformed(evt);
             }
         });
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("El valor de tu conversión es: ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addContainerGap(81, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(72, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                        .addGap(10, 10, 10)
+                        .addComponent(opcionesMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(opcionesMonedas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnOk)
-                    .addComponent(opcionesMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(opcionesMonedas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(valorConversion, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(btnFinalizar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnVolver)))
+                .addGap(65, 65, 65))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,11 +119,15 @@ public class OpcionesMoneda extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(opcionesMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opcionesMonedas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(valorConversion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancelar)
-                    .addComponent(btnOk))
-                .addContainerGap(95, Short.MAX_VALUE))
+                    .addComponent(btnFinalizar)
+                    .addComponent(btnVolver))
+                .addGap(53, 53, 53))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -112,29 +142,57 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void initAcciones(){
+    private void initAcciones() {
         acciones = new HashMap<>();
         //Asociar combinaciones con sus acciones
-        //acciones.put("Pesos|Dolar",()-> valorConvertido = );
-        
-   
+        acciones.put("Pesos|Dolar", () -> valorConversion.setText(String.valueOf(entradaValor.getValorConvertido() * conversorMoneda.getTasasDeCambio()[0])));
+
     }
-    
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+
+    private void realizarAccion() {
+        String opcionMoneda1 = (String) opcionesMonedas.getSelectedItem();
+        String opcionMoneda2 = (String) opcionesMonedas2.getSelectedItem();
+        String clave = opcionMoneda1 + "|" + opcionMoneda2;
+
+        Runnable accion = acciones.get(clave);
+
+        if (accion != null) {
+            accion.run();
+        } else {
+            //String valorConvertido = (String) entradaValor.getValorConvertido();
+            valorConversion.setText(String.valueOf(entradaValor.getValorConvertido()));
+        }
+    }
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         entradaValor.mostrarPanelAnterior();
-    }//GEN-LAST:event_btnCancelarActionPerformed
- 
-   
-  
-    
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void opcionesMonedasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesMonedasActionPerformed
+        realizarAccion();
+    }//GEN-LAST:event_opcionesMonedasActionPerformed
+
+    private void opcionesMonedas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionesMonedas2ActionPerformed
+        realizarAccion();
+    }//GEN-LAST:event_opcionesMonedas2ActionPerformed
+
+    private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null,
+                "¿Desea continuar?", "Select an Option", JOptionPane.YES_NO_OPTION);
+        if (opcion == 1 || opcion == 2) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_btnFinalizarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnOk;
+    private javax.swing.JButton btnFinalizar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> opcionesMonedas;
     private javax.swing.JComboBox<String> opcionesMonedas2;
+    private javax.swing.JTextField valorConversion;
     // End of variables declaration//GEN-END:variables
 }
-
