@@ -20,6 +20,7 @@ public class OpcionesMoneda extends javax.swing.JPanel {
     /**
      * Creates new form OpcionesMoneda
      */
+    int xMouse, yMouse;
     private final EntradaValor entradaValor;
     private ConversorMoneda conversorMoneda = new ConversorMoneda();
     private Map<String, Runnable> acciones;
@@ -48,6 +49,30 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         valorConversion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                formMouseDragged(evt);
+            }
+        });
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
+            }
+        });
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel1MouseDragged(evt);
+            }
+        });
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel1MousePressed(evt);
+            }
+        });
+
+        opcionesMonedas.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         opcionesMonedas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesos", "Dolar", "Euro", "Libras", "Yen", "Won Coreano" }));
         opcionesMonedas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +80,7 @@ public class OpcionesMoneda extends javax.swing.JPanel {
             }
         });
 
+        opcionesMonedas2.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         opcionesMonedas2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pesos", "Dolar", "Euro", "Libras", "Yen", "Won Coreano" }));
         opcionesMonedas2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +88,7 @@ public class OpcionesMoneda extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         jLabel1.setText("Elija la moneda a la que deseas convertir tu dinero: ");
 
         btnFinalizar.setText("Finalizar");
@@ -86,6 +113,7 @@ public class OpcionesMoneda extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Roboto Light", 1, 12)); // NOI18N
         jLabel2.setText("El valor de tu conversión es: ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -93,47 +121,43 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(81, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(opcionesMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(opcionesMonedas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(145, 145, 145)
                         .addComponent(valorConversion, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(btnFinalizar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVolver)))
-                .addGap(65, 65, 65))
+                        .addGap(131, 131, 131)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(76, 76, 76)))))
+                .addContainerGap(91, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addGap(60, 60, 60)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(opcionesMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFinalizar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVolver)
+                    .addComponent(opcionesMonedas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(40, 40, 40)
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(opcionesMonedas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(opcionesMonedas2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(valorConversion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFinalizar)
                     .addComponent(btnVolver))
@@ -152,15 +176,14 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private String conversion(double entradaValor, double tasaDeCambio){
+    private String conversion(double entradaValor, double tasaDeCambio) {
         DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
         separadoresPersonalizados.setDecimalSeparator('.');
-         DecimalFormat formato = new DecimalFormat("#.###", separadoresPersonalizados);
-         return formato.format(entradaValor*tasaDeCambio);
-         
-         
+        DecimalFormat formato = new DecimalFormat("#.###", separadoresPersonalizados);
+        return formato.format(entradaValor * tasaDeCambio);
+
     }
-    
+
     private void initAcciones() {
         acciones = new HashMap<>();
         //Asociar combinaciones con sus acciones
@@ -215,6 +238,22 @@ public class OpcionesMoneda extends javax.swing.JPanel {
     private void valorConversionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorConversionActionPerformed
 
     }//GEN-LAST:event_valorConversionActionPerformed
+
+    private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
+
+    }//GEN-LAST:event_jPanel1MousePressed
+
+    private void jPanel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseDragged
+                                 
+    }//GEN-LAST:event_jPanel1MouseDragged
+
+    private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+        
+    }//GEN-LAST:event_formMousePressed
+
+    private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
+
+    }//GEN-LAST:event_formMouseDragged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
