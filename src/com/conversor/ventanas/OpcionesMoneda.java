@@ -7,8 +7,8 @@ package com.conversor.ventanas;
 import java.util.HashMap;
 import java.util.Map;
 import com.conversor.logica.ConversorMoneda;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -48,6 +48,7 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         btnVolver = new javax.swing.JButton();
         valorConversion = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -106,7 +107,8 @@ public class OpcionesMoneda extends javax.swing.JPanel {
         });
 
         valorConversion.setEditable(false);
-        valorConversion.setText(String.valueOf(entradaValor.getValorConvertido()));
+        valorConversion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        valorConversion.setBorder(null);
         valorConversion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valorConversionActionPerformed(evt);
@@ -123,15 +125,17 @@ public class OpcionesMoneda extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(valorConversion, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(131, 131, 131)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76)))))
+                                .addGap(76, 76, 76))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(valorConversion, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                            .addComponent(jSeparator1))))
                 .addContainerGap(91, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(60, 60, 60)
@@ -157,7 +161,9 @@ public class OpcionesMoneda extends javax.swing.JPanel {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(valorConversion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFinalizar)
                     .addComponent(btnVolver))
@@ -177,10 +183,10 @@ public class OpcionesMoneda extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private String conversion(double entradaValor, double tasaDeCambio) {
-        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
-        separadoresPersonalizados.setDecimalSeparator('.');
-        DecimalFormat formato = new DecimalFormat("#.###", separadoresPersonalizados);
+     
+        NumberFormat formato = NumberFormat.getCurrencyInstance();
         return formato.format(entradaValor * tasaDeCambio);
+           
 
     }
 
@@ -262,6 +268,7 @@ public class OpcionesMoneda extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JComboBox<String> opcionesMonedas;
     private javax.swing.JComboBox<String> opcionesMonedas2;
     private javax.swing.JTextField valorConversion;
