@@ -20,9 +20,9 @@ public class OpcionesMoneda extends javax.swing.JPanel {
     /**
      * Creates new form OpcionesMoneda
      */
-    int xMouse, yMouse;
     private final EntradaValor entradaValor;
-    private ConversorMoneda conversorMoneda = new ConversorMoneda();
+   NumberFormat formato = NumberFormat.getCurrencyInstance();
+   ConversorMoneda conversorMoneda = new ConversorMoneda();
     private Map<String, Runnable> acciones;
 
     public OpcionesMoneda(EntradaValor entradaValor) {
@@ -108,6 +108,7 @@ public class OpcionesMoneda extends javax.swing.JPanel {
 
         valorConversion.setEditable(false);
         valorConversion.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        valorConversion.setText(String.valueOf(formato.format(entradaValor.getValorConvertido())));
         valorConversion.setBorder(null);
         valorConversion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,7 +185,7 @@ public class OpcionesMoneda extends javax.swing.JPanel {
 
     private String conversion(double entradaValor, double tasaDeCambio) {
      
-        NumberFormat formato = NumberFormat.getCurrencyInstance();
+       
         return formato.format(entradaValor * tasaDeCambio);
            
 
